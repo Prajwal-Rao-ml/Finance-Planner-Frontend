@@ -1,7 +1,14 @@
 import React from "react";
+import Navbar from "./components/Navbar";
+import Login from "./pages/Login";
 
 const App: React.FC = () => {
-  return <div>App:React.FC</div>;
+  return (
+    <div className="animated-background  min-h-screen bg-base-100 flex flex-col">
+      <Navbar />
+      <Login />
+    </div>
+  );
 };
 
 export default App;

@@ -1,2 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Kannada:wght@100..900&family=Walter+Turncoat&display=swap');
 @import "tailwindcss";
 @plugin "daisyui";
+
+body {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+}
+
+.kannada {
+    font-family: "Noto Serif Kannada", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+/* Winter theme */
+@plugin "daisyui/theme" {
+    name: "winter";
+    default: true;
+    /* set winter as default */
+
+    --color-primary: #0ea5e9;
+    /* sky-500 */
+    --color-secondary: #14b8a6;
+    /* teal-400 */
+    --color-accent: #22c55e;
+
+    --color-success: #007d4f;
+
+    --color-error: #ef4444;
+}
+
+/* Night theme */
+@plugin "daisyui/theme" {
+    name: "night";
+
+    --color-primary: #0ea5e9;
+    /* dark teal */
+    --color-secondary: #2563eb;
+    /* blue-600 */
+    --color-accent: #059669;
+    /* emerald-600 */
+    --color-success: #007d4f --color-error: #ef4444;
+}
+
+/* Gradient flow animation */
+@keyframes flow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Slide in from right */
+@keyframes slide-in-right {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Slide out to right */
+@keyframes slide-out-right {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Classes to use */
+.animate-slide-in {
+    animation: slide-in-right 0.5s ease-out forwards;
+}
+
+.animate-slide-out {
+    animation: slide-out-right 0.5s ease-in forwards;
+}
+
+/* Animated background utility */
+.animated-background {
+    @apply bg-gradient-to-r from-primary/30 via-secondary/30 to-accent/30;
+    background-size: 200% 200%;
+    animation: flow 10s ease-in-out infinite;
+}

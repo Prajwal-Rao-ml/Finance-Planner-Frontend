@@ -1,0 +1,67 @@
+import React from "react";
+import type { IFormprops } from "../types/form.types";
+
+const Form: React.FC<IFormprops> = ({
+  formState,
+  handleChange,
+  handleSubmit,
+  loading,
+}: IFormprops) => {
+  return (
+    <div className="relative mx-auto min-w-md min-h-max card bg-base-300/60 border border-primary/10 shadow-xl rounded-2xl">
+      <div className="card-body">
+        <h2 className="card-title justify-center text-xl">Login</h2>
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+          <div className="form-control">
+            <label className="label">
+              <span className="text-base-content text-sm font-semibold">
+                Email
+              </span>
+            </label>
+            <input
+              value={formState.email}
+              onChange={handleChange}
+              type="email"
+              name="email"
+              placeholder="Email"
+              className="input input-primary w-full rounded-2xl placeholder:text-xs"
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="text-sm text-base-content font-semibold">
+                Password
+              </span>
+            </label>
+            <input
+              value={formState.password}
+              onChange={handleChange}
+              type="password"
+              name="password"
+              placeholder="Password"
+              className="input input-primary w-full rounded-2xl placeholder:text-xs"
+            />
+          </div>
+          <div className="form-control mt-6">
+            <button
+              type="submit"
+              className="btn btn-primary w-full rounded-2xl flex items-center justify-center gap-2"
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <span className="loading loading-spinner loading-sm"></span>
+                  Logging in...
+                </>
+              ) : (
+                "Login"
+              )}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Form;
