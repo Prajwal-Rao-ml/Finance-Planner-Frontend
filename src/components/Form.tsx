@@ -67,7 +67,7 @@ const Form: React.FC<IFormprops> = ({
             <button
               type="submit"
               className="btn border-secondary/20 animate-button w-full rounded-2xl flex items-center justify-center gap-2"
-              disabled={loading}
+              disabled={loading || googleLoading}
             >
               {loading ? (
                 <>
@@ -88,7 +88,7 @@ const Form: React.FC<IFormprops> = ({
             <button
               type="button"
               onClick={handleGoogleLoginButton}
-              disabled={googleLoading}
+              disabled={googleLoading || loading}
               className="btn border-secondary/20 animate-button w-full rounded-2xl flex items-center justify-center gap-2"
             >
               {googleLoading ? (
