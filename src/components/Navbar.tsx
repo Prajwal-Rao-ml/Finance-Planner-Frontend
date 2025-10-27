@@ -10,9 +10,9 @@ const Navbar = () => {
     <nav className="navbar h-20 px-6 flex justify-between items-center">
       <div className="flex-1 flex items-center gap-2 h-full">
         <span className="h-full">
-          <img className="w-15 h-5/6" src={Icon} alt="Logo" />
+          <img className="w-15 h-5/6 " src={Icon} alt="Logo" />
         </span>
-        <h1 className="text-4xl font-bold kannada pt-5">ಕಾಸ್ ಇಲ್ಲ</h1>
+        <h1 className="text-4xl font-bold kannada pt-5 animated-text">ಕಾಸ್ ಇಲ್ಲ</h1>
       </div>
 
       <div className="flex items-center gap-4">
