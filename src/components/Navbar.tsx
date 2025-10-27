@@ -1,43 +1,10 @@
-import React, { useState } from "react";
 import { useTheme } from "../hooks/Theme/useTheme";
-import axiosConfig from "../configs/axiosConfig"; // ✅ make sure this path matches your project
+import useAuth from "../hooks/Auth/useAuth";
 import Icon from "../assets/bankruptcy.png";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
-  const [loading, setLoading] = useState(false);
-
-  const logout = async (): Promise<void> => {
-    try {
-      setLoading(true);
-      const refreshToken = localStorage.getItem("refreshToken");
-
-      if (refreshToken) {
-        const response = await axiosConfig.post("/api/auth/logout", {
-          refreshToken,
-        });
-
-        if (response.status !== 200) {
-          throw new Error("Logout failed");
-        }
-      }
-
-      // Always clear tokens locally
-      localStorage.removeItem("authToken");
-      localStorage.removeItem("refreshToken");
-
-      // Redirect to login
-      window.location.href = "/login";
-    } catch (error) {
-      console.error("Logout error:", error);
-      // still clear local data even if backend fails
-      localStorage.removeItem("authToken");
-      localStorage.removeItem("refreshToken");
-      window.location.href = "/login";
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { isAuthenticated, loading, logout } = useAuth();
 
   return (
     <nav className="navbar h-20 px-6 flex justify-between items-center">
@@ -90,23 +57,25 @@ const Navbar = () => {
           </svg>
         </label>
 
-        {/* Logout Button */}
-        <button
-          onClick={logout}
-          disabled={loading}
-          className={`btn border-secondary/20 animate-button-error rounded-2xl flex items-center justify-center gap-2 ${
-            loading ? "btn-disabled" : ""
-          }`}
-        >
-          {loading ? (
-            <>
-              <span className="loading loading-spinner loading-sm"></span>
-              Logging out...
-            </>
-          ) : (
-            "Logout"
-          )}
-        </button>
+        {/* Logout Button - Only show when authenticated */}
+        {isAuthenticated && (
+          <button
+            onClick={logout}
+            disabled={loading}
+            className={`btn border-secondary/20 animate-button-error rounded-2xl flex items-center justify-center gap-2 ${
+              loading ? "btn-disabled" : ""
+            }`}
+          >
+            {loading ? (
+              <>
+                <span className="loading loading-spinner loading-sm"></span>
+                Logging out...
+              </>
+            ) : (
+              "Logout"
+            )}
+          </button>
+        )}
       </div>
     </nav>
   );

@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import Form from "../components/Form";
-import useLogin from "../hooks/Auth/useLogin";
+import useAuth from "../hooks/Auth/useAuth";
 import Toast from "../components/Toast";
 import { LoginFormConfig } from "../constants/Login";
 
@@ -8,11 +8,11 @@ const Login: FC = () => {
   const {
     formState,
     handleChange,
-    handleSubmit,
+    handleLoginSubmit,
     loading,
     toastMessage,
     handleGoogleLogin,
-  } = useLogin();
+  } = useAuth();
   return (
     <div className=" flex-1 w-full  flex items-center">
       {toastMessage ? (
@@ -25,7 +25,7 @@ const Login: FC = () => {
         formConfig={LoginFormConfig}
         formState={formState}
         handleChange={handleChange}
-        handleSubmit={handleSubmit}
+        handleSubmit={handleLoginSubmit}
         loading={loading}
         handleGoogleLogin={handleGoogleLogin}
       />
