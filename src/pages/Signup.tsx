@@ -1,5 +1,5 @@
 import React from "react";
-import useSignup from "../hooks/Auth/useSignup";
+import useAuth from "../hooks/Auth/useAuth";
 import Toast from "../components/Toast";
 import Form from "../components/Form";
 import { SignupFormConfig } from "../constants/Signup";
@@ -8,11 +8,11 @@ const Signup: React.FC = () => {
   const {
     formState,
     handleChange,
-    handleSubmit,
+    handleSignupSubmit,
     loading,
     toastMessage,
     handleGoogleLogin,
-  } = useSignup();
+  } = useAuth();
   return (
     <div className=" flex-1 w-full  flex items-center">
       {toastMessage ? (
@@ -25,7 +25,7 @@ const Signup: React.FC = () => {
         formConfig={SignupFormConfig}
         formState={formState}
         handleChange={handleChange}
-        handleSubmit={handleSubmit}
+        handleSubmit={handleSignupSubmit}
         loading={loading}
         buttonText="Signup"
         loadingText="Signing up..."
